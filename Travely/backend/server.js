@@ -18,20 +18,16 @@ const dbConfig = {
 
 const pool = mysql.createPool(dbConfig);
 
-// Secret para JWT
 const JWT_SECRET = 'tu_secreto_seguro';
 
-// Registrar usuario
 app.post('/api/register', async (req, res) => {
   try {
     const { nombre, email, password, tipo, sexo } = req.body;
     
-    // Validar tipo de usuario
     if (tipo !== 'conductor' && tipo !== 'pasajero') {
       return res.status(400).json({ error: 'Tipo de usuario no válido' });
     }
     
-    // Hash de la contraseña
     const hashedPassword = await bcrypt.hash(password, 10);
     
     const connection = await pool.getConnection();
@@ -48,7 +44,7 @@ app.post('/api/register', async (req, res) => {
   }
 });
 
-// Login
+
 app.post('/api/login', async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -84,7 +80,7 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-// Middleware de autenticación
+
 function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
@@ -98,7 +94,7 @@ function authenticateToken(req, res, next) {
   });
 }
 
-// Ruta protegida de ejemplo
+
 app.get('/api/dashboard', authenticateToken, (req, res) => {
   res.json({ message: `Bienvenido al dashboard de ${req.user.tipo}` });
 });

@@ -55,7 +55,7 @@ export const useAuthStore = defineStore('auth', () => {
     router.push('/login');
   }
   
-  // Verificar autenticación al cargar la página
+
   function initialize() {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {

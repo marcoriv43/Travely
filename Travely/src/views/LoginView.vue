@@ -56,6 +56,7 @@ const handleLogin = async () => {
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  background-color: rgba(177, 154, 205, 1);
 }
 
 .form-group {
@@ -74,7 +75,7 @@ input {
 }
 
 button {
-  background-color: #42b983;
+  background-color: #000000;
   color: white;
   padding: 10px 15px;
   border: none;

@@ -89,6 +89,7 @@ const handleRegister = async () => {
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  background-color: rgba(177, 154, 205, 1);
 }
 
 .form-group {
@@ -107,7 +108,7 @@ input, select {
 }
 
 button {
-  background-color: #42b983;
+  background-color: #000;
   color: white;
   padding: 10px 15px;
   border: none;

@@ -65,6 +65,7 @@ header {
   margin-bottom: 30px;
   padding-bottom: 15px;
   border-bottom: 1px solid #eee;
+  background-color: rgba(177, 154, 205, 1);
 }
 
 .logout-btn {
