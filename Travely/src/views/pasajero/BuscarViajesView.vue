@@ -1,8 +1,6 @@
 <template>
   <section class="buscador">
     <h2>Buscar viaje</h2>
-
-    <!-- 🔍 FORMULARIO -->
     <form @submit.prevent="buscar" class="form">
       <div class="row">
         <label>Lugar de ida
@@ -36,8 +34,6 @@
 
       <button type="submit">Buscar</button>
     </form>
-
-    <!-- 📋 LISTA DE RESULTADOS -->
     <table v-if="viajes.length" class="tabla">
       <thead>
         <tr>
@@ -72,7 +68,7 @@
 import { ref } from 'vue';
 import axios from 'axios';
 
-/* ------- Formulario ------- */
+
 const form = ref({
   origen:    '',
   recogida:  '',
@@ -82,12 +78,11 @@ const form = ref({
   hora:      '',
 });
 
-/* ------- Estado ------- */
+
 const viajes   = ref([]);
 const cargando = ref(false);
 const buscado  = ref(false);
 
-/* ------- Acciones ------- */
 const buscar = async () => {
   cargando.value = true;
   viajes.value   = [];
