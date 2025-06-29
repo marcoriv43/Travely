@@ -35,6 +35,12 @@
       </div>
     </div>
   </div>
+  
+ <footer class="app-footer">
+    <p>&copy; {{ new Date().getFullYear() }} Travely – Todos los derechos reservados.</p>
+  </footer>
+
+
 </template>
 
 <script setup>
