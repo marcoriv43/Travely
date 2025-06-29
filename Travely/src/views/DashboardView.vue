@@ -38,17 +38,23 @@
 </template>
 
 <script setup>
-import { useAuthStore } from '../stores/auth';
+
+import { useRouter } from 'vue-router';
+import { useAuthStore } from '@/stores/auth';
 
 const authStore = useAuthStore();
+const router    = useRouter();
 
-const buscarViajes = () => {
-  alert('Funcionalidad de búsqueda de viajes para pasajeros');
-};
+const buscarViajes = () => router.push('/dashboard/buscar');
 
-const publicarViaje = () => {
-  alert('Funcionalidad para publicar viajes para conductores');
-};
+const verHistorialPasajero = () => router.push('/dashboard/historial');
+
+const publicarViaje = () => router.push('/dashboard/publicar');
+
+const verActivos = () => router.push('/dashboard/activos');
+
+const verHistorialConductor = () => router.push('/dashboard/historial-c');
+
 </script>
 
 <style scoped>
