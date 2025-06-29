@@ -2,7 +2,10 @@ import { createRouter, createWebHistory } from 'vue-router';
 import LoginView from '../views/LoginView.vue';
 import RegisterView from '../views/RegisterView.vue';
 import DashboardView from '../views/DashboardView.vue';
+import BuscarViajesView from '../views/pasajero/BuscarViajesView.vue';
+import DashboardHome from '../views/pasajero/DashboardHome.vue';
 import { useAuthStore } from '../stores/auth';
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -23,12 +26,19 @@ const router = createRouter({
       component: RegisterView,
       meta: { requiresGuest: true }
     },
-    {
-      path: '/dashboard',
-      name: 'dashboard',
-      component: DashboardView,
-      meta: { requiresAuth: true }
-    }
+   
+
+{
+  path: '/dashboard',
+  component: DashboardView,
+  meta: { requiresAuth: true },
+  children: [
+    { path: '', component: DashboardHome },
+    { path: 'buscar', component: BuscarViajesView },
+    // otras rutas hijas...
+  ],
+}
+
   ]
 });
 
@@ -45,3 +55,4 @@ router.beforeEach((to, from, next) => {
 });
 
 export default router;
+
