@@ -10,11 +10,12 @@
       <div class="card">
         <h3>Buscar Viajes</h3>
         <p>Encuentra conductores disponibles cerca de ti.</p>
-        <button @click="buscarViajes">Buscar Viajes</button>
+       <button @click="buscarViajes">Buscar Viajes</button>
       </div>
       <div class="card">
         <h3>Historial de Viajes</h3>
         <p>Revisa tus viajes anteriores.</p>
+        <button @click="verHistorialPasajero">Ver Viajes</button>
       </div>
     </div>
     
@@ -23,7 +24,7 @@
       <div class="card">
         <h3>Ofertas de Viaje</h3>
         <p>Publica un nuevo viaje disponible.</p>
-        <button @click="publicarViaje">Publicar Viaje</button>
+      <button @click="publicarViaje">Publicar Viaje</button>
       </div>
       <div class="card">
         <h3>Viajes Activos</h3>
@@ -32,10 +33,11 @@
       <div class="card">
         <h3>Historial de Viajes</h3>
         <p>Revisa tus viajes anteriores.</p>
+    <button @click="verHistorialConductor">Ver Viajes</button>
       </div>
     </div>
   </div>
-  
+
  <footer class="app-footer">
     <p>&copy; {{ new Date().getFullYear() }} Travely – Todos los derechos reservados.</p>
   </footer>
@@ -118,4 +120,16 @@ header {
 .conductor-dashboard .card {
   background-color: #fff0f5;
 }
+
+.app-footer {
+background: #E1BEE7;
+  text-align: center;
+  font-size: .9rem;
+  color: #666;
+  padding: 1rem 0;
+  border-top: 1px solid #e0e0e0;
+}
+  
+
+
 </style>
