@@ -4,6 +4,7 @@ import RegisterView from '../views/RegisterView.vue';
 import DashboardView from '../views/DashboardView.vue';
 import BuscarViajesView from '../views/pasajero/BuscarViajesView.vue';
 import DashboardHome from '../views/pasajero/DashboardHome.vue';
+import PublicarViajeView from '../views/conductor/PublicarViajeView.vue'
 import { useAuthStore } from '../stores/auth';
 
 
@@ -35,7 +36,8 @@ const router = createRouter({
   children: [
     { path: '', component: DashboardHome },
     { path: 'buscar', component: BuscarViajesView },
-    // otras rutas hijas...
+    { path:'publicar', component: PublicarViajeView},
+
   ],
 }
 
