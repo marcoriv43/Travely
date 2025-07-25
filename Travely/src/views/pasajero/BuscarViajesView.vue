@@ -174,7 +174,7 @@ const reservarViaje = async (id_viaje, id_conductor) => {
       let ntfMensaje = await axios.post('http://localhost:3000/ntf/crear', {
         id_usuario: id_conductor,
         titulo_ntf: `Nuevo pasajero`,
-        mensaje_ntf: `El pasajero ${authStore.user.nombre} ha reservado un viaje.`
+        mensaje_ntf: `El pasajero ${authStore.user.nombre} ha reservado tu viaje.`
       });
       cargando.value = false;
       router.push('/');

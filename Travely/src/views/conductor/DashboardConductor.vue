@@ -132,14 +132,14 @@ const misViajes = async () => {
 
 const cancelarViaje = async (id_viaje) => {
   try {
+    const pasajeroDisp = await axios.get('http://localhost:3000/viajes/disp', {
+      params: { id_viaje: id_viaje }
+    });
     await axios.patch(`http://localhost:3000/viajes/cambio`,{
       id_viaje,
       estado_viaje: 'cancelado'
     });
     misViajes();
-    const pasajeroDisp = await axios.get('http://localhost:3000/viajes/disp', {
-      params: { id_viaje: id_viaje }
-    });
     for (const pasajero of pasajeroDisp.data) {      
       await axios.post('http://localhost:3000/ntf/crear', {
         id_usuario: pasajero.id_pasajero1,
@@ -183,7 +183,7 @@ const finalizarViaje = async (id_viaje) => {
       estado_viaje: 'finalizado'
     });
     misViajes();
-        const pasajeroDisp = await axios.get('http://localhost:3000/viajes/disp', {
+    const pasajeroDisp = await axios.get('http://localhost:3000/viajes/disp', {
       params: { id_viaje: id_viaje }
     });
     for (const pasajero of pasajeroDisp.data) {      

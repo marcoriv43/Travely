@@ -69,6 +69,11 @@ button.hoy {
 
 /*main.ccs */
 
+body {
+  @apply overflow-x-hidden;
+  
+}
+
 .green {
   @apply no-underline text-[hsla(160,100%,37%,1)] transition-[0.4s] p-[3px];
 }

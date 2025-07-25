@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-screen max-h-screen">
+  <div class="max-h-screen flex-box">
  
     <header class="h-20 flex">
       <img src="/travely.png" alt="" style="cursor:pointer;" @click="goHome" class="w-[70px] pt-[5px] pb-0 px-[5px] "/>
@@ -21,7 +21,7 @@
             <!-- Fondo con gradiente -->
             <div class="">
                 <!-- Formas decorativas de fondo -->
-                <div class="absolute inset-0 overflow-hidden">
+              <div class="absolute inset-0 overflow-hidden">
                     <div class="absolute -top-40 -right-40 w-80 h-80 bg-white opacity-10 rounded-full float"></div>
                     <div class="absolute -bottom-20 -left-20 w-60 h-60 bg-purple-300 opacity-20 rounded-full pulse-slow"></div>
                     <div class="absolute top-20 left-1/4 w-32 h-32 bg-blue-300 opacity-15 rounded-full float" style="animation-delay: -2s;"></div>
@@ -151,7 +151,6 @@ const revisarNtf = async () => {
     contenidoNtf.value.forEach(crearAviso);
   } catch (error) {
     console.error('Error obteniendo datos del servidor:', error);
-    rutas.value = [];
   }
 };
 
@@ -195,7 +194,6 @@ const removeAlert = async (id) => {
     });    
   } catch (error) {
     console.error('Error obteniendo datos del servidor:', error);
-    rutas.value = [];
   }
 };
 </script>

@@ -16,14 +16,14 @@ app.get('/usuarios', async (req, res) => {
     connection.release();     
     res.send(result);
   } catch (error) {
-    console.error('Error al obtener los viajes registrados:', error);
-    res.status(500).json({ error: 'Error al obtener los viajes registrados' });
+    console.error('Error al obtener los usuarios registrados:', error);
+    res.status(500).json({ error: 'Error al obtener los usuarios registrados' });
   }
 });
 
 app.get('/buscar', async (req, res) => {
   try {
-    const busqueda = req.params.busqueda || req.query.busqueda || '';
+    const busqueda = req.query.busqueda || '';
     const busquedaLike = `%${busqueda}%`;
     const connection = await pool.getConnection();
     const [result] = await connection.execute(

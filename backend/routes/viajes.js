@@ -41,13 +41,13 @@ app.get('/disp', async (req, res) => {
     console.error('Error al obtener los pasajeros por viajes:', error);
     res.status(500).json({ error: 'Error al obtener los pasajeros por viajes' });    
   }
-},)
+});
 
 app.patch('/cambio', async (req, res) => {
   try {
     const { id_viaje, estado_viaje } = req.body;
     const connection = await pool.getConnection();
-    await connection.execute('UPDATE viajes SET estado_viaje = ? WHERE id_viaje = ?', [estado_viaje,id_viaje]);
+    await connection.execute('UPDATE viajes SET estado_viaje = ? WHERE id_viaje = ?', [estado_viaje, id_viaje]);
     connection.release();
 
     res.status(200).json({ message: 'Viaje cancelado exitosamente' });

@@ -49,14 +49,18 @@ app.post('/login', async (req, res) => {
     connection.release();
 
     if (rows.length === 0) {
-      return res.status(401).json({ error: 'Credenciales inválidas' });
+      return res.status(401).json({ error: 'Usuario no existe' });
     }
 
     const user = rows[0];
 
     const passwordMatch = await bcrypt.compare(password, user.password);
     if (!passwordMatch) {
-      return res.status(401).json({ error: 'Credenciales inválidas' });
+      return res.status(401).json({ error: 'Contraseña incorrecta' });
+    }
+
+    if (user.estado !== 'activo') {
+      return res.status(403).json({ error: 'Usuario suspendido/bloqueado' });
     }
 
     const token = jwt.sign(
@@ -64,20 +68,12 @@ app.post('/login', async (req, res) => {
       JWT_SECRET,
       { expiresIn: '1h' }
     );
-
-    if (user.estado !== 'activo') {
-      return res.status(403).json({ error: 'Usuario suspendido/bloqueado' });
-    }
     
     res.json({ token, user: { id: user.id, nombre: user.nombre, email: user.email, tipo: user.tipo, sexo: user.sexo, estado: user.estado } });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Error al iniciar sesión' });
   }
-});
-
-app.get('/dashboard', authenticateToken, (req, res) => {
-  res.json({ message: `Bienvenido al dashboard de ${req.user.tipo}` });
 });
 
 module.exports = app;
