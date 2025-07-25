@@ -1,17 +1,16 @@
-<template>    
-  <h2>Dashboard de Notificaciones</h2>
+<template>
   <div class="contenedor">
     <div v-if="notificaciones.length === 0" class="resto-contenedor">
-      <h3>No tienes notificaciones registradas</h3>      
+      <h3 class="text-center text-3xl py-6" >No tienes notificaciones registradas</h3>      
     </div>
     <div v-else class="resto-contenedor">
-      <h3>Historial de notificaciones</h3><br>
+      <h3 class="text-center text-3xl py-6" >Historial de notificaciones</h3><br>
       <div class="cards-container">
         <div v-for="(notificacion, idx) in notificaciones" class="card" :key="idx">
           <h4>{{ notificacion.titulo_nft }}</h4><br>
           <p>Fecha: {{ notificacion.fecha_ntf }}</p><br>
           <p>{{ notificacion.mensaje_ntf }}</p>
-          <button @click="borrarNtf(notificacion.id_ntf)">Borrar</button>
+          <button class="btn-dark" @click="borrarNtf(notificacion.id_ntf)">Borrar</button>
         </div>
       </div>
     </div>

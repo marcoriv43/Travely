@@ -1,6 +1,12 @@
 <template>
-    <div class=" w-screen p-50 flex items-center justify-items-center">
-      <div className="max-w-[700px] max-h-[700px] border bg-[rgba(177,154,205,1)] mx-auto my-0 p-5 rounded-[5px] border-solid border-[#ccc]">
+<div class="w-screen h-screen flex flex-col md:flex-row">
+  
+    <div class="hidden md:flex w-full md:w-1/2 h-1/3 md:h-full items-center justify-center">
+        <img class="object-cover w-full h-full max-h-full" src="../assets/imglogin.png" alt="">
+    </div>
+
+    <div class="w-full md:w-1/2 flex p-11 items-center justify-center">
+      <div className="max-w-[350px] max-h-[700px] border bg-[rgba(177,154,205,1)] mx-auto my-0 p-5 rounded-[5px] border-solid border-[#ccc]">
         <div class="pb-2">
           <h2 class="text-3xl text-center">Iniciar Sesión</h2>
         </div>
@@ -23,6 +29,7 @@
         <p>¿No tienes una cuenta? <router-link to="/register">Regístrate</router-link></p>
       </div>
     </div>
+</div>
 </template>
 
 <script setup>

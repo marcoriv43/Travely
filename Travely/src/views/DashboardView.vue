@@ -1,15 +1,26 @@
 <template>
-  <div class="max-h-screen flex-box">
+  <div class="min-h-screen ">
  
-    <header class="h-20 flex">
-      <img src="/travely.png" alt="" style="cursor:pointer;" @click="goHome" class="w-[70px] pt-[5px] pb-0 px-[5px] "/>
+    <header class="h-20 w-screen  bg-[rgba(177,154,205,1)] flex justify-between items-center">
+        <div class="p-2">
+            <img src="/travely.png" alt="" style="cursor:pointer;" @click="goHome" class="w-[70px] pt-[5px] pb-0 px-[5px] "/>
+        </div>
       <h1 class="text-2xl">Bienvenido, {{ nombreUsuario }}</h1>
-      <button @click="historialNtf">Notificaciones</button>
-      <button @click="logout" class="btn-dark ">Cerrar Sesión</button>
+      
+    <div class="flex">
+      <button @click="historialNtf" class="flex items-center gap-2 cursor-pointer text-black px-4 py-2 rounded-md border-0 bg-white">
+        <img src="/notificacion.png" alt="Notificaciones" class="w-6 h-6" />
+        Notificaciones
+      </button>
+    </div>
+      <div class="p-6">
+        <button @click="logout" class="btn-dark">Cerrar Sesión</button> 
+      </div>
+      
     </header>
     
-    <div class="w-screen maxh-screen h-full p-1.5 flex-auto">
-        <main class="content">
+    <div class="min-w-screen min-h-screen h-[1000px] p-1.5 flex-auto">
+        <main >
           <router-view />
         </main>
     </div>
@@ -17,7 +28,7 @@
 
     <div id="ntfUbicacion" class="aviso-contenedor"></div>
 
-        <footer class="max-w-full max-h-100 relative overflow-hidden bg-[rgba(177,154,205,1)]">
+        <footer class="w-screen h-auto relative overflow-hidden bg-[rgba(177,154,205,1)]">
             <!-- Fondo con gradiente -->
             <div class="">
                 <!-- Formas decorativas de fondo -->
@@ -44,24 +55,20 @@
                             <div class="flex space-x-4 pl-8">
                                 <a href="#" class="glass-effect p-3 rounded-full hover-glow transition-all duration-300 group">
                                     <svg class="w-6 h-6 text-white group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                                        <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
                                     </svg>
                                 </a>
                                 <a href="#" class="glass-effect p-3 rounded-full hover-glow transition-all duration-300 group">
                                     <svg class="w-6 h-6 text-white group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
+                                        <path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/>
                                     </svg>
                                 </a>
-                                <a href="#" class="glass-effect p-3 rounded-full hover-glow transition-all duration-300 group">
+                                <a href="https://github.com/marcoriv43/Travely"  class="glass-effect p-3 rounded-full hover-glow transition-all duration-300 group">
                                     <svg class="w-6 h-6 text-white group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.263.82-.583 0-.288-.01-1.05-.016-2.06-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.606-2.665-.304-5.466-1.332-5.466-5.93 0-1.31.468-2.38 1.236-3.22-.124-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.5 11.5 0 013.003-.404c1.02.005 2.047.138 3.003.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.873.12 3.176.77.84 1.235 1.91 1.235 3.22 0 4.61-2.803 5.624-5.475 5.921.43.372.823 1.104.823 2.226 0 1.606-.015 2.898-.015 3.293 0 .322.216.699.825.58C20.565 21.796 24 17.297 24 12c0-6.63-5.37-12-12-12z"/>
                                     </svg>
                                 </a>
-                                <a href="#" class="glass-effect p-3 rounded-full hover-glow transition-all duration-300 group">
-                                    <svg class="w-6 h-6 text-white group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.219-.359-1.219c0-1.142.662-1.995 1.488-1.995.219 0 .359.179.359.399 0 .219-.140.359-.140.578-.219.937.662 1.797 1.797 1.797 2.156 0 3.847-2.277 3.847-5.595 0-2.919-2.156-4.957-5.256-4.957-3.598 0-5.595 2.697-5.595 5.476 0 1.083.415 2.24.934 2.876.103.119.117.224.086.345-.092.388-.298 1.202-.337 1.371-.051.219-.172.265-.396.159-1.488-.694-2.416-2.876-2.416-4.618 0-3.797 2.756-7.282 7.939-7.282 4.178 0 7.42 2.977 7.42 6.944 0 4.139-2.607 7.462-6.233 7.462-1.219 0-2.357-.636-2.748-1.396 0 0-.599 2.277-.744 2.836-.269 1.023-1.002 2.301-1.490 3.085 1.123.345 2.306.524 3.527.524 6.624 0 11.99-5.367 11.99-11.987C24.007 5.367 18.641.001 12.017.001z"/>
-                                    </svg>
-                                </a>
+
                             </div>
                         </div>
 
@@ -103,10 +110,10 @@
                             <p class="text-gray-200 text-center md:text-left">
                                 © 2024 Mi Empresa. Todos los derechos reservados.
                             </p>
-                            <div class="flex space-x-6 text-sm ">
-                                <a href="#" class="text-yellow hover:text-white transition-colors">Política de Privacidad</a>
-                                <a href="#" class="text-gray-200 hover:text-white transition-colors">Términos de Uso</a>
-                                <a href="#" class="text-gray-200 hover:text-white transition-colors">Cookies</a>
+                            <div class="flex space-x-6 text-sm pr-4">
+                                <a href="#" class="text-black hover:text-white transition-colors">Política de Privacidad</a>
+                                <a href="#" class="text-black hover:text-white transition-colors">Términos de Uso</a>
+                                <a href="#" class="text-black hover:text-white transition-colors">Cookies</a>
                             </div>
                         </div>
                     </div>
@@ -122,6 +129,8 @@ import { useRouter } from 'vue-router';
 import { useAuthStore } from '@/stores/auth';
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
 
 const authStore = useAuthStore();
 const router    = useRouter();

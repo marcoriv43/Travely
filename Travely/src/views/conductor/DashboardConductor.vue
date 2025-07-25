@@ -1,25 +1,26 @@
 <template>
-    <h2 class="text-center text-3xl pb-4 " >Dashboard de Conductor</h2>
-    <div class="flex flex-row">        
-        <div class="w-1/4 p-5">
+    <h2 class="text-center text-3xl py-6" >Dashboard de Conductor</h2>
+    <div class="w-screen h-screen flex flex-col md:flex-row">        
+        <div class=" p-4  md:w-1/4 pr-10">
             <div class="card">
                 <h3 class="text-xl">Ofertas de Viaje</h3>
-                <p class="py-1">Publica un nuevo viaje disponible.</p>
-                <button class="btn-dark" @click="publicarViaje">Publicar Viaje</button>
+                <p class="py-2">Publica un nuevo viaje disponible.</p>
+                <button class="btn-primary" @click="publicarViaje">Publicar Viaje</button>
             </div>
             <div class="card">
                 <h3 class="text-xl">Historial de Viajes</h3>
-                <p class="py-1">Revisa tus viajes anteriores.</p>
-                <button class="btn-dark" @click="verHistorial">Ver Viajes</button>
+                <p class="py-2">Revisa tus viajes anteriores.</p>
+                <button class="btn-primary" @click="verHistorial">Ver Viajes</button>
             </div>
         </div>
-        <div class="w-3/4 p-4">
+        <div class="md:w-3/4 p-4 pr-10">
           <div class="card">
-            <h3 class="text-xl">Viajes Activos</h3>
-            <p class="py-1">Revisa tus viajes activos.</p>
-            <div v-if="viajes.length === 0" class="no-viajes">
-                <p class="pb-2">No tienes viajes publicados, publica un nuevo viaje disponible</p>
-                <button class="btn-dark" @click="publicarViaje">Publicar Viaje</button>
+            <div class="pb-4" >
+              <h3 class="text-4xl ">Viajes Activos</h3>
+            </div>
+            <div v-if="viajes.length === 0" class="no-viajes ">
+                <p class="py-2">No tienes viajes publicados, publica un nuevo viaje disponible</p>
+                <button class="btn-primary" @click="publicarViaje">Publicar Viaje</button>
             </div>
             <table v-else class="w-full">
                 <thead>
@@ -44,11 +45,11 @@
                     <td>${{ viaje.precio }}</td>
                     <td>{{ viaje.estado_viaje }}</td>
                     <td v-if="viaje.estado_viaje === 'programado'">
-                      <button @click="iniciarViaje(viaje.id_viaje)">Iniciar</button>
-                      <button @click="cancelarViaje(viaje.id_viaje)">Cancelar</button>
+                      <button class="btn-green" @click="iniciarViaje(viaje.id_viaje)">Iniciar</button>
+                      <button class="btn-red" @click="cancelarViaje(viaje.id_viaje)">Cancelar</button>
                     </td>
                     <td v-else>
-                      <button @click="finalizarViaje(viaje.id_viaje)">Finalizar</button>
+                      <button class="btn-dark" @click="finalizarViaje(viaje.id_viaje)">Finalizar</button>
                     </td>
                 </tr>
                 </tbody>
