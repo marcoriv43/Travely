@@ -1,19 +1,19 @@
 <template>    
-  <h2 class="text-center text-3xl pb-4 >Dashboard de Pasajero"</h2>
-  <div class="flex flex-row">
-    <div class="w-1/4 p-5">
+  <h2 class="text-center text-3xl py-6"> Dashboard de Pasajero </h2>
+  <div class="w-screen mim-h-48  flex flex-col md:flex-row">
+    <div class="p-4  md:w-1/4 md:pr-2 pr-10">
       <div class="card">
         <h3 class="text-xl">Buscar Viajes</h3>
-        <p>Encuentra conductores disponibles cerca de ti.</p>
-        <button class="btn-dark" @click="buscarViaje">Buscar Viajes</button>
+        <p class="py-1">Encuentra conductores disponibles cerca de ti.</p>
+        <button class="btn-primary" @click="buscarViaje">Buscar Viajes</button>
       </div>
       <div class="card">
         <h3 class="text-xl">Historial de Viajes</h3>
-        <p>Revisa tus viajes anteriores.</p>
-        <button class="btn-dark" @click="verHistorial">Ver Viajes</button>
+        <p class="py-1">Revisa tus viajes anteriores.</p>
+        <button class="btn-primary" @click="verHistorial">Ver Viajes</button>
       </div>
     </div>
-    <div class="w-3/4 p-4">
+    <div class="md:w-3/4 p-4 pr-10 h-screen">
       <div class="card">
       <h3 class="text-xl">Mis Viajes Activos:</h3>
       <div v-if="viajes.length === 0" class="resto-contenedor">
@@ -21,21 +21,22 @@
         <button class="btn-dark" @click="buscarViaje">Buscar Viajes</button>
       </div>
         <div v-else class="resto-contenedor">
-          <h3>Resultados de la búsqueda</h3><br>
           <div class="cards-container">
             <div v-for="(viaje, idx) in viajes" class="card" :key="idx">
-              <h4>{{ viaje.descripcion }}</h4><br>
+              <h4 class="pb-3 text-xl">{{ viaje.descripcion }}</h4>
               <ul>
                 <li>Conductor: {{ viaje.conductor.nombre_conductor }}</li>
                 <li>Vehículo: {{ viaje.vehiculo.tipo_vehiculo }} {{ viaje.vehiculo.marca }} {{ viaje.vehiculo.modelo }}</li>
                 <li>Ruta: {{ viaje.ruta.salida }} - {{ viaje.ruta.llegada }}</li>
                 <li>Fecha: {{ viaje.fecha }}</li>
-                <li v-if="viaje.estado_viaje === 'programado'">Inician en: {{ tiempoRestante(viaje.fecha) }}</li>
+                <li v-if="viaje.estado_viaje === 'programado'">Inicia en: {{ tiempoRestante(viaje.fecha) }}</li>
                 <li>Precio: ${{ viaje.precio }}</li>
                 <li>Disponibilidad: {{ viaje.disponibilidad }} asientos</li>              
               </ul>
-              <button v-if="viaje.estado_viaje === 'programado'" @click="cancelarViaje(viaje.id_viaje, viaje.conductor.id_conductor)">Cancelar</button>
-              <button v-else>Viaje en proceso</button>
+              <div class="pt-2">
+                <button class="btn-dark" v-if="viaje.estado_viaje === 'programado'" @click="cancelarViaje(viaje.id_viaje, viaje.conductor.id_conductor)">Cancelar</button>
+                <button v-else>Viaje en proceso</button>
+              </div>
             </div>
           </div>
         </div>
@@ -149,9 +150,9 @@ function tiempoRestante(fechaStr) {
   const horas = Math.floor(diffMin / 60);
   const minutos = diffMin % 60;
   if (horas > 0) {
-    return `En ${horas}h ${minutos}min`;
+    return `${horas}h ${minutos}min`;
   } else {
-    return `En ${minutos}min`;
+    return `${minutos}min`;
   }
 }
 

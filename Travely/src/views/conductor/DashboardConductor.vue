@@ -1,7 +1,7 @@
 <template>
     <h2 class="text-center text-3xl py-6" >Dashboard de Conductor</h2>
-    <div class="w-screen h-screen flex flex-col md:flex-row">        
-        <div class=" p-4  md:w-1/4 pr-10">
+    <div class="w-screen h-48 max-h-full md:max-h-screen flex flex-col md:flex-row">        
+        <div class=" p-4  md:w-1/4 md:pr-2 pr-10">
             <div class="card">
                 <h3 class="text-xl">Ofertas de Viaje</h3>
                 <p class="py-2">Publica un nuevo viaje disponible.</p>
@@ -15,14 +15,15 @@
         </div>
         <div class="md:w-3/4 p-4 pr-10">
           <div class="card">
-            <div class="pb-4" >
-              <h3 class="text-4xl ">Viajes Activos</h3>
+            <div class="pb-1" >
+              <h3 class="text-2xl py-2">Viajes Activos</h3>
             </div>
             <div v-if="viajes.length === 0" class="no-viajes ">
-                <p class="py-2">No tienes viajes publicados, publica un nuevo viaje disponible</p>
+                <p class="">No tienes viajes publicados, publica un nuevo viaje.</p>
                 <button class="btn-primary" @click="publicarViaje">Publicar Viaje</button>
             </div>
-            <table v-else class="w-full">
+            <div v-else class="w-full mt-4 overflow-x-auto">
+            <table  class="w-full min-w-[700px] border-collapse">
                 <thead>
                 <tr>
                     <th>Descripción</th>
@@ -54,6 +55,7 @@
                 </tr>
                 </tbody>
             </table>
+          </div>
           </div>
         </div>
     </div>

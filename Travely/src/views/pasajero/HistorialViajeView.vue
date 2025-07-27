@@ -1,13 +1,16 @@
 <template>
   <section class="HistorialViajeView">
-    <h2>Historico de mis viajes</h2>
-    <div class="historial">
+      <h2 class="text-center text-3xl py-6">Historico de mis viajes</h2>
+    
+    <div class="historial pr-4">
+      <button class="btn-dark" @click="goHome" >Regresar</button>
       <div v-if="viajes.length === 0" class="no-viajes">
         <p>No tienes viajes registrados.</p>
         <p>Encuentra conductores disponibles cerca de ti.</p>
         <button @click="buscarViaje">Buscar Viajes</button>
       </div>
-      <table v-else class="tabla-historial">
+      <div v-else class="w-full mt-4 overflow-x-auto">
+      <table class="w-full min-w-[700px] border-collapse ">
         <thead>
           <tr>
             <th><button @click="ordenarPor('descripcion')">Descripción</button></th>
@@ -42,6 +45,7 @@
         </tbody>
       </table>
     </div>
+    </div>
   </section>
 </template>
 
@@ -58,6 +62,7 @@ onMounted(() => {
 const router = useRouter();
 const authStore = useAuthStore();
 const buscarViaje = () => router.push('/dashboard/buscar');
+const goHome = () => router.push('/');
 
 const viajes = ref([]);
 const orden = ref({ campo: '', asc: true });

@@ -1,8 +1,11 @@
 <template>
-  <section class="buscador">
-    <h2>Buscar viaje</h2>
-    <div class="contenedor">
-      <div class="cuarto-contenedor">
+  <section class="buscador pr-4">
+    <div class="py-3">
+      <h2 class="text-center text-3xl">Buscar viaje</h2>
+    </div>
+    <button class="btn-dark" @click="goHome" >Regresar</button>
+    <div class="contenedor pt-4">
+      <div class="cuarto-contenedor border shadow-[0_2px_4px_rgba(0,0,0,0.1)] rounded-lg border-solid border-[#ddd]">
         <form @submit.prevent="buscar" class="form">
           <div v-if="rutas.length>0" class="row">
             <label>Ruta
@@ -31,19 +34,23 @@
               <input type="time" v-model="opcionesBuscar.hora"/>
             </label>
           </div>
-          <button type="submit">Buscar</button>          
+          <button class="btn-dark" type="submit">Buscar</button>          
         </form>
-        <button @click="viajesActivos">Limpiar</button>
+        <div class="pt-2">
+          <button class="btn-primary w-full" @click="viajesActivos">Limpiar</button>
+        </div>
       </div>
       <div v-if="viajes.length === 0" class="resto-contenedor">
         <h3>No hay Viajes disponibles actualmente</h3>
         <p>{{ mensajeVariable }}</p>
       </div>
-      <div v-else class="resto-contenedor">
-        <h3>Resultados de la búsqueda</h3><br>
-        <div class="cards-container">
-          <div v-for="(viaje, idx) in viajes" class="card" :key="idx">
-            <h4>{{ viaje.descripcion }}</h4><br>
+      <div v-else class="resto-contenedor border shadow-[0_2px_4px_rgba(0,0,0,0.1)]  rounded-lg border-solid border-[#ddd]">
+        <div class="pt-2 pb-4">
+          <h3 class="text-2xl">Resultados de la búsqueda</h3>
+        </div>
+        <div class="flex flex-wrap gap-5 justify-center">
+          <div v-for="(viaje, idx) in viajes" class="border shadow-[0_2px_4px_rgba(0,0,0,0.1)] w-[30%] min-w-[250px] box-border flex flex-col mb-5 p-5 rounded-lg border-solid border-[#ddd]" :key="idx">
+            <h4 class="text-xl pb-3">{{ viaje.descripcion }}</h4>
             <ul>
               <li>Conductor: {{ viaje.conductor.nombre_conductor }}</li>
               <li>Vehículo: {{ viaje.vehiculo.tipo_vehiculo }} {{ viaje.vehiculo.marca }} {{ viaje.vehiculo.modelo }}</li>
@@ -52,7 +59,9 @@
               <li>Precio: ${{ viaje.precio }}</li>
               <li>Disponibilidad: {{ viaje.disponibilidad }} asientos</li>
             </ul>
-            <button @click="reservarViaje(viaje.id_viaje, viaje.conductor.id_conductor)">Viajar</button>
+            <div class="pt-1.5">
+              <button class="btn-dark w-full" @click="reservarViaje(viaje.id_viaje, viaje.conductor.id_conductor)">Viajar</button>
+            </div>
           </div>
         </div>
       </div>
@@ -76,6 +85,8 @@ const authStore = useAuthStore();
 const router = useRouter();
 const cargando = ref(false);
 const mensajeVariable = ref('');
+
+const goHome = () => router.push('/');
 
 onMounted(() => {    
   viajesActivos();  
@@ -270,40 +281,6 @@ const rutasRegistradas = async () => {
 </script>
 
 <style scoped>
-.cards-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: flex-start;
-}
-
-.card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  width: 30%;
-  min-width: 250px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-}
-
-.card h3 {
-  margin-top: 0;
-}
-
-.card button {
-  background-color: #000;
-  color: white;
-  padding: 8px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
 .modal-vista {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;

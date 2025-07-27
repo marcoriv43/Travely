@@ -1,66 +1,83 @@
 <template>
-  <section class="publicar">
-    <h2>Publicar viaje</h2>
+  <section class="publicar pr-3.5">
+    <h2 class="text-center text-3xl py-6">Publicar viaje</h2>
 
-    <form @submit.prevent="publicar" class="form">
-      <label>
-        Descripcion<input v-model="nuevo.descripcion" required />
-      </label>
+    <div class="w-full flex flex-col items-center justify-center">
 
-      <label>
-        Selecciona un vehículo
-          <template v-if="vehiculos.length > 0">
-            <select v-model="nuevo.vehiculo_id" required>
-              <option disabled value="">Seleccione</option>
-              <option v-for="v in vehiculos" :key="v.id_vehiculo || v.tipo_vehiculo || v.modelo || v.marca || v.color || v.capacidad":value="v.id_vehiculo || v.tipo_vehiculo || v.modelo || v.marca || v.color || v.capacidad">
-                {{v.tipo_vehiculo}} {{v.modelo}} {{v.marca}} {{v.color}} (Capacidad: {{ v.capacidad }})
-              </option>
-            </select>
-          </template>
-          <template v-else>
-            <span style="color:#b00;">No hay vehículos registrados</span>
-          </template>
-          <button type="button" @click="abrirModalVehiculo">Agregar vehículo</button>
-      </label>
+      <div class="max-w-[800px] w-full border bg-[rgba(177,154,205,1)] mx-auto p-5 rounded-[5px] border-solid border-[#ccc]" >
+        <form @submit.prevent="publicar" class="form">
+          <label class="text-lg block mb-[5px]">
+            Descripcion<input class="w-full box-border p-2 bg-white rounded-[5px]" v-model="nuevo.descripcion" required />
+          </label>
 
-      <label>
-        Ruta
-        <template v-if="rutas.length > 0">
-          <select v-model="nuevo.ruta_id" required>
-            <option disabled value="">Seleccione</option>
-            <option v-for="r in rutas" :key="r.id_ruta || r.nombre_ruta || r.salida || r.llegada" :value="r.id_ruta || r.nombre_ruta || r.salida || r.llegada">
-              {{ r.nombre_ruta }} ({{ r.salida }} - {{ r.llegada }})
-            </option>
-          </select>
-        </template>
-        <template v-else>
-          <span style="color:#b00;">No hay rutas registradas</span>                      
-        </template>
-        <button type="button" @click="abrirModalRuta">Agregar ruta</button>
-      </label>
+          <label class="text-lg">
+            Selecciona un vehículo
+            <div class="py-2" >
+              <template class="" v-if="vehiculos.length > 0">
+                <select class="w-full box-border p-2 bg-white rounded-[5px]" v-model="nuevo.vehiculo_id" required>
+                  <option disabled value="">Seleccione</option>
+                  <option v-for="v in vehiculos" :key="v.id_vehiculo || v.tipo_vehiculo || v.modelo || v.marca || v.color || v.capacidad":value="v.id_vehiculo || v.tipo_vehiculo || v.modelo || v.marca || v.color || v.capacidad">
+                    {{v.tipo_vehiculo}} {{v.modelo}} {{v.marca}} {{v.color}} (Capacidad: {{ v.capacidad }})
+                  </option>
+                </select>
+              </template>
+              <template v-else>
+                <span style="color:#b00;">No hay vehículos registrados</span>
+              </template>
+            </div>
+              <button class="btn-dark2 pt-2" type="button" @click="abrirModalVehiculo">Agregar vehículo</button>
+            </label>
 
-      <label>
-        Fecha de inicio        
-        <button type="button" :class="{ hoy: nuevo.disponibleHoy }" @click="disponibleHoyBtn">
-          {{ nuevo.disponibleHoy ? 'Disponible HOY ✅' : 'Disponible hoy' }}
-        </button>
-        <div style="display: flex; gap: 1rem; align-items: center;">
-          <input type="date" v-model="nuevo.inicia_el" :disabled="nuevo.disponibleHoy" :min="fechaHoy()" required>
-          <input type="time" v-model="nuevo.inicia_a" required>
-        </div>
-      </label>
+          <label class="text-lg">
+            Ruta
+            <div class="py-2" >
+            <template v-if="rutas.length > 0">
+              <select class="w-full box-border p-2 bg-white rounded-[5px]" v-model="nuevo.ruta_id" required>
+                <option disabled value="">Seleccione</option>
+                <option v-for="r in rutas" :key="r.id_ruta || r.nombre_ruta || r.salida || r.llegada" :value="r.id_ruta || r.nombre_ruta || r.salida || r.llegada">
+                  {{ r.nombre_ruta }} ({{ r.salida }} - {{ r.llegada }})
+                </option>
+              </select>
+            </template>
+            <template v-else>
+              <span style="color:#b00;">No hay rutas registradas</span>                      
+            </template>
+            </div>
+            <button class="btn-dark2" type="button" @click="abrirModalRuta">Agregar ruta</button>
+          </label>
 
-      <label>
-        Precio ($)
-        <input type="number" v-model.number="nuevo.precio" min="1" required />
-      </label>
-      <input type="hidden" v-model="nuevo.conductor_id"/>
-      <div class="row">        
-        <button type="submit">
-          Publicar
-        </button>
+          <label class="text-lg">
+            Fecha de inicio
+            <div class="py-2">       
+            <button type="button" class="btn-dark2 w-full" :class="{ hoy: nuevo.disponibleHoy }" @click="disponibleHoyBtn">
+              {{ nuevo.disponibleHoy ? 'Disponible HOY ✅' : 'Disponible hoy' }}
+            </button>
+            </div> 
+            <div style="display: flex; gap: 1rem; align-items: center;">
+              <input type="date" v-model="nuevo.inicia_el" :disabled="nuevo.disponibleHoy" :min="fechaHoy()" required>
+              <input type="time" v-model="nuevo.inicia_a" required>
+            </div>
+          
+          </label>
+
+          <label class="text-lg">
+            Precio ($)
+            <input type="number" v-model.number="nuevo.precio" min="1" required />
+          </label>
+          <input type="hidden" v-model="nuevo.conductor_id"/>
+          <div class="w-full " style="display: flex; gap: 1rem; align-items: center;">
+            <div class="w-1/2">        
+              <button class="btn-dark w-full" type="submit">
+                Publicar
+              </button>
+            </div>
+            <div class="w-1/2">
+              <button class="btn-white w-full" @click="goHome" >Regresar</button>
+            </div>
+          </div>
+        </form>
       </div>
-    </form>
+    </div>
   </section>
 
   <div v-if="cargando" class="modal-vista">
@@ -71,32 +88,40 @@
   </div>
   
   <div v-if="modalVehiculo" class="modal-vista">
-    <div class="modal-contenido">
-      <h3>Agregar vehículo</h3>
+    <div class="min-w-[300px] shadow-[0_2px_16px_rgba(0,0,0,0.2)] p-8 rounded-[10px] bg-white">
+      <h3 class="text-center text-xl pb-2">Agregar vehículo</h3>
       <form @submit.prevent="registrarVehiculo">
         <label>Tipo<input v-model="vehiculoForm.tipo_vehiculo" required /></label>
         <label>Modelo<input v-model="vehiculoForm.modelo" required /></label>
         <label>Marca<input v-model="vehiculoForm.marca" required /></label>
         <label>Color<input v-model="vehiculoForm.color" required /></label>
         <label>Capacidad<input type="number" v-model.number="vehiculoForm.capacidad" min="1" max="25" required /></label>
-        <div style="display:flex;gap:1rem;justify-content:flex-end;">
-          <button class="cerrarBtn" type="button" @click="cerrarModalVehiculo">Cancelar</button>
-          <button type="submit">Guardar</button>
+        <div class="flex gap-4 justify-between pt-2" >
+            <div>
+              <button class="btn-red" type="button" @click="cerrarModalVehiculo">Cancelar</button>
+            </div>
+            <div>
+              <button class="btn-green"type="submit">Guardar</button>
+            </div>
         </div>
       </form>
     </div>
   </div>
 
   <div v-if="modalRuta" class="modal-vista">
-    <div class="modal-contenido">
-      <h3>Agregar Rutas</h3>
+    <div class="min-w-[300px] shadow-[0_2px_16px_rgba(0,0,0,0.2)] p-8 rounded-[10px] bg-white">
+      <h3 class="text-center text-xl pb-2">Agregar Rutas</h3>
       <form @submit.prevent="registrarRuta">
         <label>Nombre<input v-model="rutaForm.nombre_ruta" required /></label>
         <label>Salida<input v-model="rutaForm.salida" required /></label>
         <label>Llegada<input v-model="rutaForm.llegada" required /></label>        
-        <div style="display:flex;gap:1rem;justify-content:flex-end;">
-          <button class="cerrarBtn" type="button" @click="cerrarModalRuta">Cancelar</button>
-          <button type="submit">Guardar</button>
+        <div class="flex gap-4 justify-between pt-2" >
+            <div>
+              <button class="btn-red" type="button" @click="cerrarModalRuta">Cancelar</button>
+            </div>
+            <div>
+              <button class="btn-green"type="submit">Guardar</button>
+            </div>
         </div>
       </form>
     </div>
@@ -114,6 +139,8 @@ import axios from 'axios';
 const authStore = useAuthStore();
 const router = useRouter();
 const cargando = ref(false);
+
+const goHome = () => router.push('/');
 
 onMounted(() => {    
   vehiculosRegristrados();
@@ -239,21 +266,13 @@ const registrarRuta = async () => {
 </script>
 
 <style scoped>
-.publicar { max-width: 700px; margin: 0 auto; }
-.form { display: flex; flex-direction: column; gap: 1rem; }
-.row  { display: flex; gap: 1rem; flex-wrap: wrap; }
-label { display: flex; flex-direction: column; flex: 1; min-width: 150px; }
+
 input, select {
   padding: .4rem .6rem;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-button {
-  padding: .5rem 1rem;
-  border: 0; cursor: pointer;
-  border-radius: 6px;
-  background: #111; color: #fff;
-}
+
 button.hoy { background: #2e7d32; }       /* verde cuando está activo */
 
 .modal-vista {
@@ -273,10 +292,5 @@ button.hoy { background: #2e7d32; }       /* verde cuando está activo */
   box-shadow: 0 2px 16px rgba(0,0,0,0.2);
 }
 
-.cerrarBtn {
-  background: #f44336; 
-  color: #fff; 
-  border: none;
-  padding-left: 100px;
-}
+
 </style>

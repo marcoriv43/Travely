@@ -1,9 +1,9 @@
 <template>
-  <div class="min-h-screen ">
+  <div class="min-h-screen flex flex-col">
  
     <header class="h-20 w-screen  bg-[rgba(177,154,205,1)] flex justify-between items-center">
         <div class="p-2">
-            <img src="/travely.png" alt="" style="cursor:pointer;" @click="goHome" class="w-[70px] pt-[5px] pb-0 px-[5px] "/>
+            <img src="/travely.png" style="cursor:pointer;" @click="goHome" class="w-[70px] pt-[0px] pb-0 px-[5px] "/>
         </div>
       <h1 class="text-2xl">Bienvenido, {{ nombreUsuario }}</h1>
       
@@ -19,11 +19,11 @@
       
     </header>
     
-    <div class="min-w-screen min-h-screen h-[1000px] p-1.5 flex-auto">
-        <main >
+
+        <main class="min-w-screen min-h-screen h-[2000px] p-1.5 flex-auto">
           <router-view />
         </main>
-    </div>
+
   
 
     <div id="ntfUbicacion" class="aviso-contenedor"></div>
@@ -129,7 +129,7 @@ import { useRouter } from 'vue-router';
 import { useAuthStore } from '@/stores/auth';
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
 
 
 const authStore = useAuthStore();

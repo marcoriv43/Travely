@@ -1,16 +1,24 @@
 <template>
-  <div class="contenedor">
+    <h3 class="text-center text-3xl py-6" >Historial de notificaciones</h3><br>
+    <div class="pl-2.5">
+      <button class="btn-dark" @click="goHome" >Regresar</button>
+    </div>
+    <div class="contenedor">
     <div v-if="notificaciones.length === 0" class="resto-contenedor">
-      <h3 class="text-center text-3xl py-6" >No tienes notificaciones registradas</h3>      
+      <h3 class="text-center text-3xl py-6" >No tienes notificaciones registradas</h3>
+
     </div>
     <div v-else class="resto-contenedor">
-      <h3 class="text-center text-3xl py-6" >Historial de notificaciones</h3><br>
-      <div class="cards-container">
+
+      
+      <div class="flex flex-wrap gap-5 justify-start">
         <div v-for="(notificacion, idx) in notificaciones" class="card" :key="idx">
           <h4>{{ notificacion.titulo_nft }}</h4><br>
           <p>Fecha: {{ notificacion.fecha_ntf }}</p><br>
           <p>{{ notificacion.mensaje_ntf }}</p>
-          <button class="btn-dark" @click="borrarNtf(notificacion.id_ntf)">Borrar</button>
+          <div class="pt-3">
+            <button class="btn-dark w-full" @click="borrarNtf(notificacion.id_ntf)">Borrar</button>
+          </div>
         </div>
       </div>
     </div>
@@ -26,6 +34,8 @@ import axios from 'axios';
 
 const authStore = useAuthStore();
 const router    = useRouter();
+
+const goHome = () => router.push('/');
 
 onMounted(() => {
   historialNtf();
@@ -60,41 +70,3 @@ const borrarNtf = async (id) => {
 
 </script>
 
-<style scoped>
-
-.cards-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: flex-start;
-}
-
-.card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  width: 30%;
-  min-width: 250px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-}
-
-.card h3 {
-  margin-top: 0;
-}
-
-.card button {
-  background-color: #000;
-  color: white;
-  padding: 8px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-
-</style>

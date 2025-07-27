@@ -1,7 +1,7 @@
 <template>
-  <div class="h-full max-w-full" id="app">
+
     <router-view />
-  </div>
+
 </template>
 
 <script setup>
