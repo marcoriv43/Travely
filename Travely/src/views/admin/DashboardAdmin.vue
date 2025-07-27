@@ -1,22 +1,24 @@
 <template>
-    <section class="ViajeView">
-        <h2>Dashboard de Admin</h2>
-        <div class="mitad-contenedor">
-            <div class="mitad-contenedor">
-                <h3>Panel de usuarios</h3>
-                <button @click="viajesPanel()">Ir al panel de Viajes</button> 
-            </div>                        
-            <div class="mitad-contenedor">
+    <section class="pr-4">
+        <h2 class="text-center text-3xl py-6">Dashboard de Admin</h2>
+            <div class="pb-2">  
+                <button class="btn-dark" @click="viajesPanel()">Ir al panel de Viajes</button> 
+            </div>
+            <div class="p-4 border shadow-[0_2px_4px_rgba(0,0,0,0.1)] rounded-lg border-solid border-[#ddd]">
+                <h3 class="text-center text-xl pb-4">Panel de usuarios</h3>   
                 <form @submit.prevent="buscar" class="form">
                     <input type="text" v-model="busqueda" placeholder="Buscar usuario por nombre o email"/>
-                    <button type="submit">Buscar</button>                    
+                    <button class="btn-dark" type="submit">Buscar</button>                    
                 </form>
-                <button @click="cargarUsuarios">Limpiar</button>
+                <div class="pt-2">
+                    <button class="btn-primary w-full" @click="cargarUsuarios">Limpiar</button>
+                </div>
             </div>
+            <div class=" w-full mt-4 overflow-x-auto p-4 border shadow-[0_2px_4px_rgba(0,0,0,0.1)] rounded-lg border-solid border-[#ddd]">
             <div v-if="usuarios.length === 0" class="no-usuarios">
                 <p>{{ mensajeCambio }}</p>
             </div>
-            <table v-else class="tabla-usuarios">
+            <table v-else class="w-full min-w-[700px] border-collapse">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -37,14 +39,13 @@
                         <td>{{ usuario.tipo }}</td>
                         <td>{{ usuario.estado }}</td>
                         <td>
-                            <button v-if="usuario.estado === 'activo'" @click="cambiarEstado(usuario.id, 'inactivo')">Bloquear</button>
-                            <button v-else @click="cambiarEstado(usuario.id, 'activo')">Activar</button>
+                            <button class="btn-red" v-if="usuario.estado === 'activo'" @click="cambiarEstado(usuario.id, 'inactivo')">Bloquear</button>
+                            <button class="btn-green w-full" v-else @click="cambiarEstado(usuario.id, 'activo')">Activar</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
-
-        </div>            
+        </div>           
     </section>
 </template>
 

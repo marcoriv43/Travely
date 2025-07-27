@@ -1,15 +1,19 @@
 <template>
-  <section class="ViajeView">
-        <h2>Dashboard de Admin</h2>
-        <h3>Panel de viajes</h3>        
-        <button @click="usuariosPanel">Ir al panel de usuarios</button>   
-    <div class="historial">
+  <section class="pr-4">
+        <h2 class="text-center text-3xl py-6">Dashboard de Admin</h2>
+        <div class="pb-2"> 
+          <button class="btn-dark" @click="usuariosPanel">Ir al panel de usuarios</button> 
+        </div>
+        <div class="px-4 border shadow-[0_2px_4px_rgba(0,0,0,0.1)] rounded-lg border-solid border-[#ddd]">
+        <h3 class="text-center text-xl pt-4">Panel de viajes</h3>  
+        <div class="historial">
       <div v-if="viajes.length === 0" class="no-viajes">
         <p>No tienes viajes registrados.</p>
         <p>Encuentra conductores disponibles cerca de ti.</p>
         <button @click="buscarViaje">Buscar Viajes</button>
       </div>
-      <table v-else class="tabla-historial">
+      <div v-else class="w-full mt-4 overflow-x-auto pb-5">
+      <table class="w-full min-w-[700px] border-collapse">
         <thead>
           <tr>
             <th><button @click="ordenarPor('descripcion')">Descripción</button></th>
@@ -32,13 +36,15 @@
             <td>${{ viaje.precio }}</td>
             <td>{{ viaje.estado }}</td>
             <td>
-              <button v-if="viaje.estado === 'programado'" @click="cambiarEstado(viaje.id_viaje, 'cancelado')">Cancelar</button>
-              <button v-if="viaje.estado === 'cancelado'" @click="cambiarEstado(viaje.id_viaje, 'programado')">Reactivar</button>
+              <button class="btn-red" v-if="viaje.estado === 'programado'" @click="cambiarEstado(viaje.id_viaje, 'cancelado')">Cancelar</button>
+              <button class="btn-green" v-if="viaje.estado === 'cancelado'" @click="cambiarEstado(viaje.id_viaje, 'programado')">Reactivar</button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
+    </div>
+  </div>  
   </section>
 </template>
 
