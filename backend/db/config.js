@@ -2,7 +2,7 @@ const dbConfig = {
   host: 'localhost',
   user: 'root',
   password: '',
-  database: 'Travely-db5'
+  database: 'Travely-db'
 };
 
 module.exports = dbConfig;
