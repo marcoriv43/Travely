@@ -108,7 +108,7 @@
                     <div class="border-t border-white/20 pt-8">
                         <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
                             <p class="text-gray-200 text-center md:text-left">
-                                © 2024 Mi Empresa. Todos los derechos reservados.
+                                © 2025 Mi Empresa. Todos los derechos reservados.
                             </p>
                             <div class="flex space-x-6 text-sm pr-4">
                                 <a href="#" class="text-black hover:text-white transition-colors">Política de Privacidad</a>
