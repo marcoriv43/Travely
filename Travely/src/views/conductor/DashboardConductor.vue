@@ -5,7 +5,7 @@
             <div class="card">
                 <h3 class="text-xl">Ofertas de Viaje</h3>
                 <p class="py-2">Publica un nuevo viaje disponible.</p>
-                <button class="btn-primary" @click="publicarViaje">Publicar Viaje</button>
+                <button class="btn-primary" id="publicarviaje" @click="publicarViaje">Publicar Viaje</button>
             </div>
             <div class="card">
                 <h3 class="text-xl">Historial de Viajes</h3>

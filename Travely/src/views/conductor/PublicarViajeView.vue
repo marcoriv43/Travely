@@ -7,7 +7,7 @@
       <div class="max-w-[800px] w-full border bg-[rgba(177,154,205,1)] mx-auto p-5 rounded-[5px] border-solid border-[#ccc]" >
         <form @submit.prevent="publicar" class="form">
           <label class="text-lg block mb-[5px]">
-            Descripcion<input class="w-full box-border p-2 bg-white rounded-[5px]" v-model="nuevo.descripcion" required />
+            Descripcion<input id="descripcion" class="w-full box-border p-2 bg-white rounded-[5px]" v-model="nuevo.descripcion" required />
           </label>
 
           <label class="text-lg">
@@ -91,17 +91,17 @@
     <div class="min-w-[300px] shadow-[0_2px_16px_rgba(0,0,0,0.2)] p-8 rounded-[10px] bg-white">
       <h3 class="text-center text-xl pb-2">Agregar vehículo</h3>
       <form @submit.prevent="registrarVehiculo">
-        <label>Tipo<input v-model="vehiculoForm.tipo_vehiculo" required /></label>
-        <label>Modelo<input v-model="vehiculoForm.modelo" required /></label>
-        <label>Marca<input v-model="vehiculoForm.marca" required /></label>
-        <label>Color<input v-model="vehiculoForm.color" required /></label>
+        <label>Tipo<input type="Tipo" v-model="vehiculoForm.tipo_vehiculo" required /></label>
+        <label>Modelo<input type="Modelo" v-model="vehiculoForm.modelo" required /></label>
+        <label>Marca<input type="Marca" v-model="vehiculoForm.marca" required /></label>
+        <label>Color<input type="Col" v-model="vehiculoForm.color" required /></label>
         <label>Capacidad<input type="number" v-model.number="vehiculoForm.capacidad" min="1" max="25" required /></label>
         <div class="flex gap-4 justify-between pt-2" >
             <div>
               <button class="btn-red" type="button" @click="cerrarModalVehiculo">Cancelar</button>
             </div>
             <div>
-              <button class="btn-green"type="submit">Guardar</button>
+              <button class="btn-green" id="Guardar" type="submit">Guardar</button>
             </div>
         </div>
       </form>

@@ -9,7 +9,7 @@
         <form @submit.prevent="buscar" class="form">
           <div v-if="rutas.length>0" class="row">
             <label>Ruta
-              <select v-model="opcionesBuscar.id_ruta">
+              <select id="ruta" v-model="opcionesBuscar.id_ruta">
                 <option disabled value="">Seleccione una opción</option>
                 <option v-for="r in rutas" :key="r.id_ruta" :value="r.id_ruta">{{ r.salida }} - {{ r.llegada }}</option>
               </select>
@@ -18,7 +18,7 @@
           <div v-else class="row">No existen rutas disponibles</div>
           <div class="row">
             <label>Asientos
-              <input type="number" v-model="opcionesBuscar.asientos" min="1"/>
+              <input id="asientos" type="number" v-model="opcionesBuscar.asientos" min="1"/>
             </label>
 
             <label>Pago($)

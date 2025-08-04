@@ -21,7 +21,7 @@
           </div>
           <div class="mb-[15px]">
             <label class="block mb-[5px]" for="tipo">Tipo de usuario:</label>
-            <select class="w-full box-border p-2 bg-white rounded-[5px]" id="tipo" v-model="tipo" required>
+            <select class="w-full box-border p-2 bg-white rounded-[5px]" type="tipo" id="tipo" v-model="tipo" required>
               <option value="pasajero">Pasajero</option>
               <option value="conductor">Conductor</option>
             </select>
